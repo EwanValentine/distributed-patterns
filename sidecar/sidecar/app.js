@@ -4,13 +4,19 @@ const app = express();
 const httpProxy = require('http-proxy');
 const apiProxy = httpProxy.createProxyServer();
 
-const target = process.env.TARGET || 'http://localhost:8080';
-const port = process.env.PORT || 80;
+const SRV_NAME = process.env.SRV_NAME;
+const Logger = require('./lib/really-cool-logger');
+const logger = new Logger(SRV_NAME);
+
+const {
+  TARGET = 'http://localhost:8080',
+  PORT = 80
+} = process.env;
 
 app.all('/*', (req, res) => {
-  console.log(`Proxying to ${target}`);
-  apiProxy.web(req, res, { target });
+  logger.send(TARGET, req.url, Date.now());
+  apiProxy.web(req, res, { TARGET });
 });
 
-app.listen(port);
+app.listen(PORT);
 
