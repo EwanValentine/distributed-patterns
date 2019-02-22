@@ -15,7 +15,7 @@ const {
 
 app.all('/*', (req, res) => {
   logger.send(TARGET, req.url, Date.now());
-  apiProxy.web(req, res, { TARGET });
+  apiProxy.web(req, res, { target: TARGET });
 });
 
 app.listen(PORT);

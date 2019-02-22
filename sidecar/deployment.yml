@@ -16,7 +16,8 @@ spec:
     spec:
       containers:
         - name: sidecar-app
-          image: sidecar:app
+          image: sidecar-app:v1
+          imagePullPolicy: Never
           ports:
             - containerPort: 8080
           env:
@@ -24,13 +25,14 @@ spec:
               value: "8080"
 
         - name: sidecar
-          image: sidecar:sidecar
+          image: sidecar-sidecar:v1
+          imagePullPolicy: Never
           ports:
             - containerPort: 80
           env:
-            - name: port
+            - name: PORT
               value: "80"
-            - name: target
+            - name: TARGET
               value: "http://localhost:8080"
 
 --- 
