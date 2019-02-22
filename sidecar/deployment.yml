@@ -30,23 +30,9 @@ spec:
           ports:
             - containerPort: 80
           env:
+            - name: SRV_NAME
+              value: "legacy-application"
             - name: PORT
               value: "80"
             - name: TARGET
               value: "http://localhost:8080"
-
---- 
-
-kind: Service
-apiVersion: v1
-metadata:
-  name: sidecar-service
-spec:
-  selector:
-    app: sidecar-service
-  ports:
-  - protocol: TCP
-    port: 80
-    targetPort: 80
-  type: LoadBalancer
-
