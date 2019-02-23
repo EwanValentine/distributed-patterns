@@ -23,4 +23,4 @@ COPY --from=builder /usr/distributed-patterns/sidecar-http-grpc/app/main .
 
 ENV PORT 80
 
-CMD ["./service"]
+CMD ["./main"]

@@ -16,16 +16,16 @@ spec:
     spec:
       containers:
         - name: sidecar-app
-          image: sidecar2-application:latest
+          image: sidecar2-application:v1
           imagePullPolicy: Never
           ports:
             - containerPort: 6000
           env:
-            - name: port
-              value: "8080"
+            - name: PORT
+              value: "6000"
 
         - name: sidecar
-          image: sidecar2-sidecar:latest
+          image: sidecar2-sidecar:v1
           imagePullPolicy: Never
           ports:
             - containerPort: 80
